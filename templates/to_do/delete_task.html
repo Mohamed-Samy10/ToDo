@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 20px;
+            padding: 20px;
+        }
+
+        p {
+            color: #dc3545; /* Red color for the delete confirmation message */
+            margin-bottom: 20px;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        form {
+            display: inline-block;
+        }
+
+        input[type="submit"] {
+            background-color: #dc3545; /* Red color for the submit button */
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #c82333; /* Darker red on hover */
+        }
+    </style>
+</head>
+<body>
+    <p>Are you sure you want to delete {{ task }}?</p>
+    
+    <a href="{% url 'list' %}">Cancel</a>
+
+    <form method="post" action="">
+        {% csrf_token %}
+        <input type="submit" name="confirm" value="Delete">
+    </form>
+</body>
+</html>

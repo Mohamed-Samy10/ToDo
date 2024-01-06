@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
+
+        h1 {
+            color: #007BFF;
+            text-align: center; /* Center the heading */
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        div {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        p {
+            margin: 5px 0;
+        }
+        .delete-text {
+            color: #dc3545; /* Red color for the delete text */
+        }
+
+        /* Color 'Yes' in green and 'No' in red */
+        .completed-yes {
+            color: #28a745; /* Green color for 'Yes' */
+        }
+
+        .completed-no {
+            color: #dc3545; /* Red color for 'No' */
+        }
+    </style>
+</head>
+<body>
+    <h1>To Do List</h1>
+
+    <a href="{% url 'add_task' %}">Add Task</a>
+
+    {% for task in tasks %}
+        <div>
+            <a href="{% url 'task_details' task.id %}">{{ task }}</a>
+            <p>Completed: {% if task.completed %}<span class="completed-yes">Yes</span>{% else %}<span class="completed-no">No</span>{% endif %}</p>
+            <a href="{% url 'update_task' task.id %}">Update</a>
+            <a href="{% url 'delete_task' task.id %}"><span class="delete-text">Delete</span></a>
+        </div>
+    {% endfor %}
+</body>
+</html>
